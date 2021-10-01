@@ -17,7 +17,7 @@ rnd_select(_,0,[]).
 rnd_select(X,N,[E|Y]) :-
     N > 0,
     length(X,L),
-    random(1,L,R),
+    R is random(L) + 1,
     remove_at(E,X,R,Z),
     N1 is N - 1,
     rnd_select(Z,N1,Y).
