@@ -11,17 +11,17 @@ What are the results of the goal:
 
 */
 
-repeat(_,0,[]).
-repeat(E,N,[E|X]) :-
-    N > 0,
-    N1 is N - 1,
-    repeat(E,N1,X).
+dupli(L,N,F) :-
+    dupli_inner(L,N,X),
+    flatten(X,F).
 
 dupli_inner([],_,[]).
 dupli_inner([H|T],N,[R|X]) :-
     repeat(H,N,R),
     dupli_inner(T,N,X).
 
-dupli(L,N,F) :-
-    dupli_inner(L,N,X),
-    flatten(X,F).
+repeat(_,0,[]).
+repeat(E,N,[E|X]) :-
+    N > 0,
+    N1 is N - 1,
+    repeat(E,N1,X).

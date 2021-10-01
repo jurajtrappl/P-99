@@ -6,18 +6,11 @@ Use the result of problem P09 to implement the so-called run-length encoding dat
 
 Example:
 ?- encode([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
-X = [[4,a],[1,b],[2,c],[2,a],[1,d][4,e]]
+X = [[4,a],[1,b],[2,c],[2,a],[1,d],[4,e]]
 
 */
 
-pack([],[]).
-pack([H|T],[X|Xs]) :-
-    pack_first(H,T,Y,X),
-    pack(Y,Xs). 
-
-pack_first(X,[],[],[X]).
-pack_first(X,[Y|Ys],[Y|Ys],[X]) :- X \== Y.
-pack_first(X,[X|Xs],Y,[X|Zs]) :- pack_first(X,Xs,Y,Zs).
+:- ensure_loaded('9').
 
 encode(L,X) :-
     pack(L,P),

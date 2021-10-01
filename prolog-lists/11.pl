@@ -10,21 +10,16 @@ X = [[4,a],b,[2,c],[2,a],d,[4,e]]
 
 */
 
-pack([],[]).
-pack([H|T],[X|Xs]) :-
-    pack_first(H,T,Y,X),
-    pack(Y,Xs). 
-
-pack_first(X,[],[],[X]).
-pack_first(X,[Y|Ys],[Y|Ys],[X]) :- X \== Y.
-pack_first(X,[X|Xs],Y,[X|Zs]) :- pack_first(X,Xs,Y,Zs).
+:- ensure_loaded('9').
 
 encode_modified(L,X) :-
     pack(L,P),
-    encode_inner(P,X).
+    encode_modified_inner(P,X).
 
-encode_inner([],[]).
-encode_inner([[H]|T],[H|U]) :- encode_inner(T,U), !.
-encode_inner([[H|T]|U],[[N,H]|V]) :-
+encode_modified_inner([],[]).
+encode_modified_inner([[H]|T],[H|U]) :-
+    encode_modified_inner(T,U),
+    !.
+encode_modified_inner([[H|T]|U],[[N,H]|V]) :-
     length([H|T],N),
-    encode_inner(U,V).
+    encode_modified_inner(U,V).

@@ -13,12 +13,7 @@ Hint: Use the predefined predicates length/2 and append/3, as well as the result
 
 */
 
-split([],_,[],[]).
-split([H|T],0,L1,[H|L2]) :- split(T,0,L1,L2).
-split([H|T],N,[H|L1],L2) :-
-    N > 0,
-    N1 is N - 1,
-    split(T,N1,L1,L2).
+:- ensure_loaded('17').
 
 rotate(L,N,X) :-
     N > 0,
